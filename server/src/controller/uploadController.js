@@ -1,25 +1,32 @@
 const { Storage } = require('@google-cloud/storage');
 require('dotenv').config();
 
-// Configura las credenciales de Google Cloud
-// Configuración de credenciales y bucket de GCS
 const credentials = {
-    type: process.env.GOOGLE_TYPE,
-    project_id: process.env.GOOGLE_PROJECT_ID,
-    private_key_id: process.env.GOOGLE_PRIVATE_KEY_ID,
-    private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'), // Reemplaza saltos de línea para formatearlo correctamente
-    client_email: process.env.GOOGLE_CLIENT_EMAIL,
-    client_id: process.env.GOOGLE_CLIENT_ID,
-    auth_uri: process.env.GOOGLE_AUTH_URI,
-    token_uri: process.env.GOOGLE_TOKEN_URI,
-    auth_provider_x509_cert_url: process.env.GOOGLE_AUTH_PROVIDER_CERT_URL,
-    client_x509_cert_url: process.env.GOOGLE_CLIENT_CERT_URL
-  };
+  type: process.env.GOOGLE_TYPE,
+  project_id: process.env.GOOGLE_PROJECT_ID,
+  private_key_id: process.env.GOOGLE_PRIVATE_KEY_ID,
+  private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+  client_email: process.env.GOOGLE_CLIENT_EMAIL,
+  client_id: process.env.GOOGLE_CLIENT_ID,
+  auth_uri: process.env.GOOGLE_AUTH_URI,
+  token_uri: process.env.GOOGLE_TOKEN_URI,
+  auth_provider_x509_cert_url: process.env.GOOGLE_AUTH_PROVIDER_CERT_URL,
+  client_x509_cert_url: process.env.GOOGLE_CLIENT_CERT_URL,
+  universe_domain: process.env.GOOGLE_UNIVERSE_DOMAIN
+};
+
+// Usa las credenciales en la configuración del cliente de Google Cloud
+const { GoogleAuth } = require('google-auth-library');
+const auth = new GoogleAuth({
+   credentials,
+   scopes: ['https://www.googleapis.com/auth/cloud-platform']
+});
+
 const gcsClient = new Storage(); // Inicializa el cliente de GCS
 
 // Función para subir archivos a Google Cloud Storage
 const uploadToGCS = async (fileBuffer, filename, folder) => {
-    const bucketName = 'sportify-1'; // Cambia esto por tu nombre de bucket
+    const bucketName = process.env.GCS_BUCKET_NAME; // Cambia esto por tu nombre de bucket
     const bucket = gcsClient.bucket(bucketName);
     const file = bucket.file(`${folder}/${filename}`);
 
@@ -29,7 +36,7 @@ const uploadToGCS = async (fileBuffer, filename, folder) => {
 
 // Función para subir la portada y devolver una URL pública en formato HTTP
 const uploadCoverToGCS = async (fileBuffer, filename) => {
-    const bucketName = 'sportify-1';
+    const bucketName = process.env.GCS_BUCKET_NAME; // Cambia esto por tu nombre de bucket
     const bucket = gcsClient.bucket(bucketName);
     const file = bucket.file(`uploads/covers/${filename}`);
 
