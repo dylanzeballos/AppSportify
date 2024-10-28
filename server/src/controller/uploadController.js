@@ -1,21 +1,7 @@
 const { Storage } = require('@google-cloud/storage');
+const {auth} = require('../services/googleauth');
 require('dotenv').config();
 
-const { GoogleAuth } = require('google-auth-library');
-const auth = new GoogleAuth({
-  process.env.GOOGLE_TYPE,
-  process.env.GOOGLE_PROJECT_ID,
-  process.env.GOOGLE_PRIVATE_KEY_ID,
-  process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-  process.env.GOOGLE_CLIENT_EMAIL,
-  process.env.GOOGLE_CLIENT_ID,
-  process.env.GOOGLE_AUTH_URI,
-  process.env.GOOGLE_TOKEN_URI,
-  process.env.GOOGLE_AUTH_PROVIDER_CERT_URL,
-  process.env.GOOGLE_CLIENT_CERT_URL,
-  process.env.GOOGLE_UNIVERSE_DOMAIN,
-   scopes: ['https://www.googleapis.com/auth/cloud-platform']
-});
 const gcsClient = new Storage(); // Inicializa el cliente de GCS
 
 // Función para subir archivos a Google Cloud Storage

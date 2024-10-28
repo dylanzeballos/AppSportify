@@ -1,6 +1,7 @@
 const vision = require('@google-cloud/vision').v1;
 const textToSpeech = require('@google-cloud/text-to-speech');
 const { Storage } = require('@google-cloud/storage');
+const {auth} = require('../services/googleauth');
 const { prisma } = require('../conf/db');
 // Cargar variables de entorno desde .env
 require('dotenv').config();
@@ -10,23 +11,6 @@ const visionClient = new vision.ImageAnnotatorClient();
 const ttsClient = new textToSpeech.TextToSpeechClient();
 const storage = new Storage();
 
-
-// Usa las credenciales en la configuración del cliente de Google Cloud
-const { GoogleAuth } = require('google-auth-library');
-const auth = new GoogleAuth({
-  process.env.GOOGLE_TYPE,
-  process.env.GOOGLE_PROJECT_ID,
-  process.env.GOOGLE_PRIVATE_KEY_ID,
-  process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-  process.env.GOOGLE_CLIENT_EMAIL,
-  process.env.GOOGLE_CLIENT_ID,
-  process.env.GOOGLE_AUTH_URI,
-  process.env.GOOGLE_TOKEN_URI,
-  process.env.GOOGLE_AUTH_PROVIDER_CERT_URL,
-  process.env.GOOGLE_CLIENT_CERT_URL,
-  process.env.GOOGLE_UNIVERSE_DOMAIN,
-   scopes: ['https://www.googleapis.com/auth/cloud-platform']
-});
 
 const bucketName = 'sportify-1';
 const audioFolder = 'uploads/audio';
