@@ -2,7 +2,7 @@ const vision = require('@google-cloud/vision').v1;
 const textToSpeech = require('@google-cloud/text-to-speech');
 const { Storage } = require('@google-cloud/storage');
 const { prisma } = require('../conf/db');
-const path = require('path');
+require('dotenv').config();
 
 // Configuración de los clientes de Google Cloud
 const visionClient = new vision.ImageAnnotatorClient();
@@ -10,8 +10,19 @@ const ttsClient = new textToSpeech.TextToSpeechClient();
 const storage = new Storage();
 
 // Configuración de credenciales y bucket de GCS
-const credentialsPath = path.join(__dirname, '.../src/google-key.json');
-process.env.GOOGLE_APPLICATION_CREDENTIALS = credentialsPath;
+const credentials = {
+  type: process.env.GOOGLE_TYPE,
+  project_id: process.env.GOOGLE_PROJECT_ID,
+  private_key_id: process.env.GOOGLE_PRIVATE_KEY_ID,
+  private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'), // Reemplaza saltos de línea para formatearlo correctamente
+  client_email: process.env.GOOGLE_CLIENT_EMAIL,
+  client_id: process.env.GOOGLE_CLIENT_ID,
+  auth_uri: process.env.GOOGLE_AUTH_URI,
+  token_uri: process.env.GOOGLE_TOKEN_URI,
+  auth_provider_x509_cert_url: process.env.GOOGLE_AUTH_PROVIDER_CERT_URL,
+  client_x509_cert_url: process.env.GOOGLE_CLIENT_CERT_URL
+};
+
 const bucketName = 'sportify-1';
 const audioFolder = 'uploads/audio';
 const outputFolder = 'uploads/json';
