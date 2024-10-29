@@ -2,7 +2,7 @@ const { Storage } = require('@google-cloud/storage');
 const {auth} = require('../services/googleauth');
 require('dotenv').config();
 
-const gcsClient = new Storage(); // Inicializa el cliente de GCS
+const gcsClient = new Storage({auth}); // Inicializa el cliente de GCS
 
 // Función para subir archivos a Google Cloud Storage
 const uploadToGCS = async (fileBuffer, filename, folder) => {

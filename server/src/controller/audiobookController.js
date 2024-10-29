@@ -7,10 +7,9 @@ const { prisma } = require('../conf/db');
 require('dotenv').config();
 
 // Configuración de los clientes de Google Cloud
-const visionClient = new vision.ImageAnnotatorClient();
-const ttsClient = new textToSpeech.TextToSpeechClient();
-const storage = new Storage();
-
+const visionClient = new vision.ImageAnnotatorClient({auth});
+const ttsClient = new textToSpeech.TextToSpeechClient({auth});
+const storage = new Storage({auth});
 
 const bucketName = 'sportify-1';
 const audioFolder = 'uploads/audio';
