@@ -1,7 +1,19 @@
 const { Storage } = require('@google-cloud/storage');
 require('dotenv').config();
-const credentialsPath = path.join(__dirname, './google-key.json');
-process.env.GOOGLE_APPLICATION_CREDENTIALS = credentialsPath;
+
+process.env.GOOGLE_APPLICATION_CREDENTIALS = {type:process.env.GCS_KEYFILE,
+    project_id:process.env.GCS_PROJECT_ID,
+    private_key_id:process.env.GCS_PRIVATE_KEY_ID,
+    private_key:process.env.GCS_PRIVATE_KEY,
+    client_email:process.env.GCS_CLIENT_EMAIL,
+    client_id:process.env.GCS_CLIENT_ID,
+    auth_uri:process.env.GCS_AUTH_URI,
+    token_uri:process.env.GCS_TOKEN_URI,
+    auth_provider_x509_cert_url:process.env.GCS_AUTH_PROVIDER_CERT_URL,
+    client_x509_cert_url:process.env.GCS_CLIENT_CERT_URL,
+    universe_domain:process.env.GCS_UNIVERSE_DOMAIN
+}; // Establece la credencial de GCS
+
 const gcsClient = new Storage(); // Inicializa el cliente de GCS
 
 // Función para subir archivos a Google Cloud Storage
