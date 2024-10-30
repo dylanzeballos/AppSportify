@@ -1,9 +1,9 @@
 -- CreateTable
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
-    "name" VARCHAR(100) NOT NULL,
+    "username" VARCHAR(10) NOT NULL,
     "email" TEXT NOT NULL,
-    "password" VARCHAR(255) NOT NULL,
+    "password" VARCHAR(15) NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -17,10 +17,11 @@ CREATE TABLE "Audiobook" (
     "categoryId" INTEGER NOT NULL,
     "description" TEXT,
     "author" VARCHAR(100) NOT NULL,
+    "duration" VARCHAR(10) NOT NULL,
     "pdfUrl" TEXT,
     "coverUrl" TEXT,
     "audioUrl" TEXT,
-    "jsonUrl" TEXT,
+    "text" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -62,7 +63,7 @@ CREATE UNIQUE INDEX "Audiobook_coverUrl_key" ON "Audiobook"("coverUrl");
 CREATE UNIQUE INDEX "Audiobook_audioUrl_key" ON "Audiobook"("audioUrl");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Audiobook_jsonUrl_key" ON "Audiobook"("jsonUrl");
+CREATE UNIQUE INDEX "Audiobook_text_key" ON "Audiobook"("text");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Category_name_key" ON "Category"("name");
