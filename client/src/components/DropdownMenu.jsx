@@ -41,22 +41,15 @@ const {signout} = UserAuth();
         open={open}
         to="/libros"
       />
-      <Option
-        Icon={FiSearch}
-        title="Buscar"
-        selected={selected}
-        setSelected={setSelected}
-        open={open}
-        to="/buscar" // Asegúrate de tener esta ruta
-      />
-      <Option
+      
+      {/* <Option
         Icon={FiBook}
         title="Biblioteca"
         selected={selected}
         setSelected={setSelected}
         open={open}
         to="/taskpage"
-      /> 
+      />  */}
       <Option
         Icon={FiFolderMinus}
         title="Registro Audiolibros"
