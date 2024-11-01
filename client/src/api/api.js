@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 //const baseURL =  "http://localhost:3000"
-const baseURL =  "https://app-sportify-bs9p.vercel.app/"
+const baseURL =  "https://app-sportify-bs9p.vercel.app"
 
 const api = axios.create({
     baseURL: baseURL,

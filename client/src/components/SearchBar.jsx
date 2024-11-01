@@ -9,7 +9,7 @@ function SearchBar() {
     const [aparecer, setAparecer] = useState(false);
 
     const fetchData = (value) => {
-        fetch("http://localhost:3000/api/audiobook/get/")
+        fetch("https://app-sportify-bs9p.vercel.app/api/audiobook/get/")
             .then((response) => response.json())
             .then((json) => {
                 const results = json.filter((audiobook) => {
