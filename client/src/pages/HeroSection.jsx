@@ -20,7 +20,7 @@ function HeroSection() {
         "https://firebasestorage.googleapis.com/v0/b/sportify-198e3.appspot.com/o/uploads%2Fcovers%2Faaaaaaaa.jpg?alt=media&token=fee6b979-ea7d-4fdf-bb53-253fefbfb14c",
         "https://firebasestorage.googleapis.com/v0/b/sportify-198e3.appspot.com/o/uploads%2Fcovers%2Fmessi.jpg?alt=media&token=a8a1dd3d-949b-4861-9d33-abf3a002197b",
         "https://firebasestorage.googleapis.com/v0/b/sportify-198e3.appspot.com/o/uploads%2Fcovers%2Fholis.jpg?alt=media&token=fec38952-f2eb-416b-9cc6-fd3de2375d64",
-        "https://firebasestorage.googleapis.com/v0/b/sportify-198e3.appspot.com/o/uploads%2Fcovers%2Fdsart.jpg?alt=media&token=1c37bbd8-7806-4036-a008-0addadf1bb16" 
+        "https://firebasestorage.googleapis.com/v0/b/sportify-198e3.appspot.com/o/uploads%2Fcovers%2Fdsart.jpg?alt=media&token=1c37bbd8-7806-4036-a008-0addadf1bb16"        
     ];
     return (
         <div className="bg-gray-50 min-h-screen">
