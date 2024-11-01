@@ -11,6 +11,7 @@ import TasksPage from './pages/Taskpage';
 import HeroSection from './pages/HeroSection';
 import Preview from './pages/Preview';
 import Reproductor from './pages/Reproductor';
+import SearchResults from './components/SearchResults';
 import { AuthContextProvider } from './context/AuthContextProvider';
 
 
