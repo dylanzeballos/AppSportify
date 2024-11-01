@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 
 //resultados de busqueda al darle a la lupa
-export const SearchResults = () => {
+const SearchResults = () => {
     const [audiobooks, setAudiobooks] = useState([]);
     const location = useLocation();
     const entrada = location.state?.input || ""; //recibo la entrada para filtrar y mapear coincidencias al dar 'Enter' o lupa
@@ -87,3 +87,5 @@ export const SearchResults = () => {
         </div>
     );
 };
+
+export default SearchResults;
